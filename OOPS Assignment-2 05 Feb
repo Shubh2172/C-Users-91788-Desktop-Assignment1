@@ -1,0 +1,91 @@
+Q1. Explain Class and Object with respect to Object-Oriented Programming. Give a suitable example.
+Ans - A class in Python is a user-defined template for creating objects. It bundles data and functions together, making it easier to manage and use them. When we create a new class,
+we define a new type of object. We can then create multiple instances of this object type.Classes are created using class keyword. Attributes are variables defined inside the class and represent the properties
+of the class. Attributes can be accessed using the dot . operator (e.g., MyClass.my_attribute).
+class dog:
+  sound = 'Barking';
+dog1() = 'Pug'
+
+  print(dog1.sound)
+
+Q2. Name the four pillars of OOPs.
+Ans - Inheritence -Inheritance is a fundamental concept in object-oriented programming (OOP) that allows a class (called a child or derived class) to inherit attributes and methods from another class 
+(called a parent or base class).This promotes code reuse, modularity, and a hierarchical class structure. In this article, we’ll explore inheritance in Python.
+Encapsulation - In Python, encapsulation refers to the bundling of data (attributes) and methods (functions) that operate on the data into a single unit, typically a class. It also restricts direct access 
+to some components, which helps protect the integrity of the data and ensures proper usage.
+abstract - Data abstraction is one of the most essential concepts of Python OOPs which is used to hide irrelevant details from the user and show the details that are relevant to the users. For example, the readers 
+of geeksforgeeks only know that a writer can write an article on geeksforgeeks, and when it gets published readers can read the articles but the reader is not aware of the background process of publishing the article.
+Polymorphism - Polymorphism is a foundational concept in programming that allows entities like functions, methods or operators to behave differently based on the type of data they are handling. Derived from 
+Greek, the term literally means “many forms”.
+Q3. Explain why the __init__() function is used. Give a suitable example.
+And def car:
+      __init__(self,model,acceleration,year):
+      self.model = model
+      self.acceleration = acceleration
+      self.year = year
+  def car_details(car):
+    pass
+Q4. Why self is used in OOPs?
+Ans - self is used to refer to the specific instance (object) of a class being manipulated, allowing access to its attributes and methods. Without it, the interpreter wouldn't know whether a variable or method belongs to the 
+class or the instance. 
+Q5. What is inheritance? Give an example for each type of inheritance.
+Ans - Single Inheritance: 
+Single inheritance enables a derived class to inherit properties from a single parent class, thus enabling code reusability and the addition of new features to existing code.
+
+# Python program to demonstrate
+# single inheritance
+
+# Base class
+class Parent:
+	def func1(self):
+		print("This function is in parent class.")
+
+# Derived class
+
+
+class Child(Parent):
+	def func2(self):
+		print("This function is in child class.")
+
+
+# Driver's code
+object = Child()
+object.func1()
+object.func2()
+
+Multiple Inheritance: 
+When a class can be derived from more than one base class this type of inheritance is called multiple inheritances. In multiple inheritances, all the features of the base classes are inherited into the derived class.
+# Python program to demonstrate
+# multiple inheritance
+
+# Base class1
+class Mother:
+	mothername = ""
+
+	def mother(self):
+		print(self.mothername)
+
+# Base class2
+
+
+class Father:
+	fathername = ""
+
+	def father(self):
+		print(self.fathername)
+
+# Derived class
+
+
+class Son(Mother, Father):
+	def parents(self):
+		print("Father :", self.fathername)
+		print("Mother :", self.mothername)
+
+
+# Driver's code
+s1 = Son()
+s1.fathername = "RAM"
+s1.mothername = "SITA"
+s1.parents()
+
