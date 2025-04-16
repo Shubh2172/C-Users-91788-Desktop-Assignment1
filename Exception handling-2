@@ -1,0 +1,53 @@
+Q1. -> Explain why we have to use the Exception class while creating a Custom Exception.
+Ans - When creating a custom exception in Python, we inherit from the built-in Exception class because it provides all the functionality that Python uses to handle errors.
+
+Q2. Write a python program to print Python Exception Hierarchy.
+Ans -> # 
+Function to recursively print exception hierarchy
+def print_exception_hierarchy(exc_class, indent=0):
+    print(' ' * indent + exc_class.__name__)
+    for subclass in exc_class.__subclasses__():
+        print_exception_hierarchy(subclass, indent + 4)
+
+# Start from the base class
+print("Python Exception Hierarchy:\n")
+print_exception_hierarchy(BaseException)
+
+Q3. What errors are defined in the ArithmeticError class? Explain any two with an example.
+Ans.-ArithmeticError is a built-in base class in Python for all errors that occur during numeric calculations.
+It is not raised directly, but other specific errors inherit from it.
+
+Errors Defined Under ArithmeticError:
+ZeroDivisionError
+OverflowError
+FloatingPointError (rarely raised directly)
+
+Q4. Why LookupError class is used? Explain with an example KeyError and IndexError.
+Ans.-LookupError is a base class for all errors that occur when you try to access an element from a collection (like a list, string, or dictionary) using an invalid key or index.
+
+It is not raised directly, but it helps group together similar errors like:
+IndexError → Invalid index in lists, tuples, or strings
+KeyError → Invalid key in dictionaries
+
+Q5. Explain ImportError. What is ModuleNotFoundError?
+Ans. - ImportError is a built-in Python exception that occurs when an import statement fails. It typically happens when:
+The module or package doesn’t exist.
+A specific function, class, or variable is missing inside a module.
+
+try:
+    from math import power  # ❌ 'power' function doesn't exist in math module
+except ImportError as e:
+    print("Caught ImportError:", e)
+
+ModuleNotFoundError is a subclass of ImportError that occurs specifically when Python cannot find the module you're trying to import.
+It was introduced in Python 3.6+ to provide a more specific error type for missing modules.
+
+Q6. List down some best practices for exception handling in python.
+Ans Use specific exception types.
+
+Avoid using a bare except:.
+Use finally for cleanup code.
+Use else to run code only if no exception occurs.
+Keep try blocks short and focused.
+Create and use custom exceptions when needed.
+Don’t suppress exceptions silently.
