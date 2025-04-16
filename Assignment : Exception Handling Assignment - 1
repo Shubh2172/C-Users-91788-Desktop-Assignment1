@@ -1,0 +1,60 @@
+Q1. What is an Exception in python? Write the difference between Exceptions and Syntax errors.
+Ans - An Exception in Python is an error that occurs during the execution of a program (i.e., at runtime). When Python encounters an exceptional situation like dividing by zero, accessing a file that doesn’t exist, or using an invalid index, it raises an exception. If not handled properly, the program will crash.
+
+Difference Between Exceptions and Syntax Errors
+
+Feature	Exception	Syntax Error
+When it occurs	During program execution (runtime)	During parsing/compiling (before running)
+What it is	Unexpected situation while running	Violation of Python’s grammar rules
+Can be handled?	Yes, using try and except blocks	No, must be fixed before running
+Example	ZeroDivisionError, FileNotFoundError	print("Hello" (missing closing parenthesis)
+
+Q2. What happens when an exception is not handled? Explain with an example.
+Ans If an exception is not handled in Python, the program will crash, and Python will display an error message (traceback) showing what went wrong and where. The rest of the code after the exception will not be executed.
+What actually happens:
+Python encounters an error (like dividing by zero).
+It raises an exception.
+If there's no try-except block to handle it, Python:
+Stops the program
+Prints the exception type and message
+Exits
+
+Q3. Which Python statements are used to catch and handle exceptions? Explain with an example.
+Ans - Python uses the try and except statements to catch and handle exceptions. This allows your program to continue running even if an error occurs.
+try:
+    # Code that may raise an exception
+except ExceptionType:
+    # Code to handle the exception
+
+try:
+    num1 = 10
+    num2 = 0
+    result = num1 / num2
+    print("Result:", result)
+except ZeroDivisionError:
+    print("Error: Cannot divide by zero.")
+
+Q4. Explain with an example:#
+ try and else#
+ finall
+ raise
+ANS
+try:
+    num1 = 10
+    num2 = 0
+    result = num1 / num2
+    print("Result:", result)
+except ZeroDivisionError:
+    print("Error: Cannot divide by zero.")
+
+try:
+    f = open("data.txt", "r")
+    content = f.read()
+except FileNotFoundError:
+    print("File not found!")
+finally:
+    print("This always runs.")
+
+raise ExceptionType("Custom error message")
+
+Q5. What are Custom Exceptions in python? Why do we need Custom Exceptions? Explain with an example.
