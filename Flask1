@@ -1,0 +1,139 @@
+Q1. What is Flask Framework? What are the advantages of Flask Framework?
+Ans.- Flask is a lightweight web framework written in Python used to build web applications and RESTful APIs. It is known for being simple, flexible, and easy to get started with.
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route("/")
+def home():
+    return "Hello, Flask!"
+
+if __name__ == "__main__":
+    app.run(debug=True)
+
+Feature	Description
+🪶 Lightweight & Minimal	Comes with basic tools — easy to start small and scale later.
+🧩 Modular & Flexible	You can add only what you need — not a "one-size-fits-all" like Django.
+🧠 Easy to Learn	Clean, simple syntax — ideal for beginners.
+🚀 Fast Development	Great for prototyping and building MVPs quickly.
+🔌 Extensions Available	Supports many plugins/extensions (e.g., Flask-SQLAlchemy, Flask-Login).
+📦 RESTful Request Handling	Easy to build APIs using HTTP methods (GET, POST, etc.).
+📁 Built-in Development Server	Run and test your app with just one Python file.
+🔧 Jinja2 Templating	Dynamic HTML rendering with Python logic.
+💬 Large Community	Lots of tutorials, documentation, and third-party libraries.
+
+Flask is based on Werkzeug (a WSGI toolkit) and Jinja2 (a templating engine), and follows the WSGI (Web Server Gateway Interface) standard.
+Use Cases of Flask:
+Small websites
+
+RESTful APIs
+Dashboards
+Prototypes and MVPs
+Microservices
+
+Q2. Create a simple Flask application to display ‘Hello World!!’. Attach the screenshot of the output in
+Jupyter Notebook.
+Ans.--> # Step 1: Import Flask
+from flask import Flask
+
+# Step 2: Create Flask app
+app = Flask(__name__)
+
+# Step 3: Define a route
+@app.route('/')
+def hello():
+    return "Hello World!!"
+
+# Step 4: Run the app
+# Use the following only in a Jupyter notebook cell:
+app.run(port=5000)
+
+![Hello World Output](hello_world_screenshot.png)
+
+
+Q3. What is App routing in Flask? Why do we use app routes?
+Ans. App routing in Flask is the technique of mapping URLs (web addresses) to specific functions in your Python code, using the @app.route() decorator.
+
+It tells Flask:
+
+"When someone visits this URL, run this function and return the result."
+from flask import Flask
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "This is the Home Page"
+
+@app.route('/about')
+def about():
+    return "This is the About Page"
+
+
+Q4. Create a “/welcome” route to display the welcome message “Welcome to ABC Corporation” and a “/”
+route to show the following details:
+Company Name: ABC Corporation
+Location: India
+Contact Detail: 999-999-9999
+Attach the screenshot of the output in Jupyter Notebook.
+Ans.-from flask import Flask
+
+# Create the Flask app
+app = Flask(__name__)
+
+# Route for home page
+@app.route('/')
+def company_info():
+    return '''
+    <h2>Company Name: ABC Corporation</h2>
+    <p>Location: India</p>
+    <p>Contact Detail: 999-999-9999</p>
+    '''
+
+# Route for welcome message
+@app.route('/welcome')
+def welcome():
+    return '<h2>Welcome to ABC Corporation</h2>'
+
+# Run the app
+if __name__ == '__main__':
+    app.run(debug=True)
+Company Name: ABC Corporation
+Location: India
+Contact Detail: 999-999-9999
+
+Q5. What function is used in Flask for URL Building? Write a Python code to demonstrate the working of the
+url_for() function.
+Ans. In Flask, the function used for URL building is:
+
+🔧 url_for()
+It dynamically generates URLs for a given view function name. This is useful when:
+
+URLs change later (no need to hardcode),
+You want to avoid mistakes in manually typed URLs.
+from flask import Flask, url_for, redirect
+app = Flask(__name__)
+
+# Route for home
+@app.route('/')
+def home():
+    # Generate URL for 'welcome' route
+    return f"Click here to go to the <a href='{url_for('welcome')}'>Welcome Page</a>"
+
+# Route for welcome
+@app.route('/welcome')
+def welcome():
+    return "Welcome to ABC Corporation!"
+
+# Route for redirecting using url_for
+@app.route('/go-welcome')
+def go_welcome():
+    # Redirect to welcome page using url_for
+    return redirect(url_for('welcome'))
+
+# Run the app
+if __name__ == '__main__':
+    app.run(debug=True)
+
+Visiting / shows a clickable link generated with url_for('welcome')
+
+Visiting /go-welcome will redirect you to /welcome using url_for()
