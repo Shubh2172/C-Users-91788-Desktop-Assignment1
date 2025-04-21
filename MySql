@@ -1,0 +1,168 @@
+Q1 What is a database? Differentiate between SQL and NoSQL databases.
+Ans - A database is an organized collection of data that is stored and accessed electronically. It allows users to efficiently store, retrieve, and manage data. Databases are used in virtually every modern software system, from websites and mobile apps to enterprise systems and data analytics platforms.
+Feature	SQL Databases	NoSQL Databases
+Full Form	Structured Query Language	Not Only SQL
+Data Model	Relational (tables with rows and columns)	Non-relational (document, key-value, graph, etc.)
+Schema	Fixed schema (predefined structure)	Dynamic schema (flexible structure)
+Examples	MySQL, PostgreSQL, Oracle, MS SQL Server	MongoDB, Cassandra, Redis, CouchDB
+Query Language	SQL	Varies (MongoDB uses JSON-like queries, etc.)
+Scalability	Vertical (scale-up: add more power to the server)	Horizontal (scale-out: add more servers)
+Transactions	ACID-compliant (reliable and consistent)	Often BASE-compliant (eventually consistent)
+Best For	Structured data and complex queries	Unstructured or semi-structured data, high volume
+Use Cases	Banking, ERP, legacy systems	Real-time web apps, IoT, big data, content management
+
+Q2. What is DDL? Explain why CREATE, DROP, ALTER, and TRUNCATE are used with an example.
+Ans.- DDL stands for Data Definition Language. It is a subset of SQL used to define and manage database structures such as tables, schemas, indexes, etc.
+
+DDL commands create, modify, and delete the structure of database objects — not the data within them. These operations are usually auto-committed, meaning changes are permanent.
+
+Create - Used for create new table,database,index etc
+CREATE TABLE Students (
+    StudentID INT,
+    Name VARCHAR(50),
+    Age INT
+);
+
+Used to delete an entire database object permanently.
+
+DROP TABLE Students;
+⚠️ This will remove the Students table and all of its data permanently.
+
+ ALTER
+Used to modify an existing database object, such as adding/removing a column.
+
+ALTER TABLE Students ADD Email VARCHAR(100);
+
+4. TRUNCATE
+Used to delete all rows from a table but keep the table structure intact.
+
+Example:
+
+Truncate table Student
+
+Q3. What is DML? Explain INSERT, UPDATE, and DELETE with an example.
+ANs - DML stnas for DATA MODIFY LANGUAGE. It is a subset of sql iusdd to modify and update database structure such as tables, database, schemas etc.
+
+1. INSERT
+Used to add new records (rows) into a table.
+INSERT INTO Students (StudentID, Name, Age)
+VALUES (1, 'Alice', 20);
+
+2. UPDATE
+Used to modify existing data in a table.
+UPDATE Students
+SET Age = 21
+WHERE StudentID = 1;
+
+3. DELETE
+Used to remove specific records from a table.
+DELETE FROM Students
+WHERE StudentID = 1;
+
+Q4. What is DQL? Explain SELECT with an example.
+Ans. DQL stands for Data Query Language. It is a subset of SQL used to query and retrieve data from a database. It doesn't modify the data or structure — it simply fetches information based on your requirements.
+
+
+Select - It is used to retreive one or more from table.
+
+select * from student
+
+Q5. Explain Primary Key and Foreign Key.
+Ans - Primary Key
+A Primary Key is a unique identifier for each record in a table.
+It ensures that:
+
+No two rows have the same value in the primary key column(s)
+
+The value cannot be NULL
+
+✅ Key Features:
+Uniqueness: No duplicate values
+
+Not Null: Every row must have a value
+
+Each table can have only one primary key
+
+CREATE TABLE Students (
+    StudentID INT PRIMARY KEY,
+    Name VARCHAR(50),
+    Age INT
+);
+
+Foreign Key
+A Foreign Key is a column (or group of columns) in one table that references the Primary Key of another table.
+It is used to maintain referential integrity between related tables.
+
+✅ Key Features:
+Links two tables together
+
+Ensures that the value in the foreign key column must exist in the referenced table’s primary key
+
+Can have duplicate and NULL values (unless restricted)
+
+CREATE TABLE Courses (
+    CourseID INT PRIMARY KEY,
+    CourseName VARCHAR(50)
+);
+
+CREATE TABLE Enrollments (
+    EnrollmentID INT PRIMARY KEY,
+    StudentID INT,
+    CourseID INT,
+    FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
+    FOREIGN KEY (CourseID) REFERENCES Courses(CourseID)
+);
+
+Q6. Write a python code to connect MySQL to python. Explain the cursor() and execute() method.
+Ans. pip install mysql-connector-python
+
+import mysql.connector
+
+# Connect to the MySQL database
+mydb = mysql.connector.connect(
+    host="localhost",       # or your MySQL server IP
+    user="root",            # your MySQL username
+    password="yourpassword",# your MySQL password
+    database="mydatabase"   # the database you want to connect to
+)
+
+# Create a cursor object
+mycursor = mydb.cursor()
+
+# Execute a query
+mycursor.execute("SELECT * FROM Students")
+
+# Fetch and print the result
+for row in mycursor.fetchall():
+    print(row)
+
+# Close the connection
+mydb.close()
+
+Explanation:
+📌 cursor()
+This method creates a cursor object using which you can:
+
+Execute SQL queries
+
+Fetch data from the database
+
+Manage transactions
+
+Think of it as a "pointer" to your database session.
+
+mycursor = mydb.cursor()
+
+
+📌 execute()
+This method is used to run an SQL query.
+
+Can be used for any SQL statement — SELECT, INSERT, UPDATE, DELETE, etc.
+
+mycursor.execute("SELECT * FROM Students")
+
+
+Q7. Give the order of execution of SQL clauses in an SQL query.
+ANs. Select .... from ....... table ..........where ........... group by ......having........ order by .....limit........
+
+
