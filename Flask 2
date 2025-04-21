@@ -1,0 +1,136 @@
+Q1. Explain GET and POST methods.
+Ans.
+In HTTP, GET and POST are two of the most commonly used request methods to send and receive data between a client (like a web browser or app) and a server (like a Flask application).
+
+🔹 GET Method
+Purpose: Used to request data from the server.
+Data Transfer: Sends data as URL parameters (query string) — visible in the address bar.
+Safe & Idempotent: Doesn’t change server data and can be repeated without side effects.
+@app.route('/search')
+def search():
+    query = request.args.get('query')
+    return f"You searched for: {query}"
+
+POST Method
+Purpose: Used to send data to the server, usually to create or update something.
+Data Transfer: Sends data in the body of the request — not visible in the URL.
+Not Idempotent: Can change server state (e.g., save a form, upload a file).
+Use Case: Login forms, submitting comments, uploading files.
+@app.route('/login', methods=['POST'])
+def login():
+    username = request.form['username']
+    password = request.form['password']
+    return f"Welcome, {username}"
+
+Q2. Why is request used in Flask?
+ANs. In Flask, the request object is used to access data that the client (like a browser or API caller) sends to the server when making an HTTP request.
+
+It's part of Flask's built-in flask module and is essential for handling form data, query parameters, headers, cookies, JSON data, and more.
+
+What you're accessing	Example	request usage
+Form data (from a POST form)	Login form	request.form['username']
+Query string (in GET request)	/search?item=pen	request.args.get('item')
+JSON data	API request sending JSON	request.get_json()
+Headers	Browser or API headers	request.headers['User-Agent']
+Cookies	Browser cookies	request.cookies.get('session_id')
+HTTP Method	GET, POST, PUT, DELETE	request.method
+
+from flask import Flask, request
+app = Flask(__name__)
+@app.route('/login', methods=['POST'])
+def login():
+    username = request.form['username']
+    return f"Welcome, {username}"
+
+Q3. Why is redirect() used in Flask?
+Ans. In Flask, the redirect() function is used to redirect the user to a different URL or route after an action is completed (like form submission, login, etc.).
+
+It sends a 302 (Found) HTTP status code, which tells the browser:
+
+Scenario	Why use redirect()?
+✅ After login/signup	Send user to dashboard
+✅ After form submission	Avoid resubmitting form on refresh
+✅ For URL shortening	Redirect to original URL
+✅ Enforcing route structure	Redirect /home → /
+from flask import Flask, redirect, url_for
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Welcome to the Home Page"
+
+@app.route('/login')
+def login():
+    # simulate login and redirect
+    return redirect(url_for('home'))  # Redirects to '/'
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+
+Q4. What are templates in Flask? Why is the render_template() function used?
+Ans.-In Flask, templates are HTML files used to separate the frontend (UI) from the backend logic (Python).
+
+Templates use the Jinja2 templating engine, which allows you to:
+
+Insert Python variables into HTML ({{ variable }})
+
+Use loops and conditionals inside HTML
+
+Create reusable HTML components
+
+🧩 Why Use Templates?
+Keeps HTML and Python separate (cleaner code)
+
+Makes your app dynamic — display data from the backend
+
+Helps reuse layouts with extends and include
+
+The render_template() function is used to:
+
+Render an HTML file from the templates/ folder
+
+Pass variables from Python to the HTML file
+from flask import Flask, render_template
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return render_template('index.html', name='Saurabh')
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome</title>
+</head>
+<body>
+    <h2>Hello, {{ name }}! Welcome to Flask Templates.</h2>
+</body>
+</html>
+
+
+Q5. Create a simple API. Use Postman to test it. Attach the screenshot of the output in the Jupyter Notebook.
+ANs. 
+{{ name }} is a placeholder for a variable passed from the Flask app using render_template().
+
+When the template is rendered, Flask will replace {{ name }} with the actual value.
+
+from flask import Flask, render_template
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return render_template('index.html', name='Saurabh')
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome</title>
+</head>
+<body>
+    <h2>Hello, {{ name }}! Welcome to Flask Templates.</h2>
+</body>
+</html>
+
