@@ -1,0 +1,175 @@
+Q1. What is Web Scraping? Why is it Used? Give three areas where Web Scraping is used to get data.
+Ans. Web scraping is the process of automatically extracting data from websites using programs or scripts.
+It allows you to collect information from web pages (like text, links, tables, etc.) and save it in a structured format (like CSV, Excel, or a database).
+Web scraping is used to:
+Collect real-time data from websites
+Automate data gathering from multiple pages
+Convert unstructured web content into structured data for analysis 
+
+Common Areas Where Web Scraping is Used:
+
+Area	Example Use Case
+🛒 E-commerce	Scraping prices, product reviews, and availability from Amazon, Flipkart, etc.
+📰 News & Media	Collecting headlines or articles from news sites like BBC, NDTV, etc.
+📊 Job Portals / Listings	Extracting job postings, company names, and requirements from websites like Naukri or LinkedIn
+
+Q2. What are the different methods used for Web Scraping?
+Ans There are several methods and tools used for web scraping, depending on the complexity of the task and the structure of the website 
+import requests
+from bs4 import BeautifulSoup
+
+url = 'http://quotes.toscrape.com'
+response = requests.get(url)
+soup = BeautifulSoup(response.text, 'html.parser')
+
+quotes = soup.find_all('span', class_='text')
+for quote in quotes:
+    print(quote.text)
+
+Method	Description
+1. Using Python Libraries	Use tools like BeautifulSoup, Requests, lxml, Scrapy
+2. Browser Automation Tools	Use tools like Selenium or Playwright to scrape data from dynamic (JavaScript-based) sites
+3. APIs (Preferred)	When websites provide public APIs, you can get structured data directly
+4. Headless Browsers	Use headless Chrome or Firefox to load and scrape content programmatically
+5. Online Scraping Tools	Tools like Octoparse, ParseHub, or WebHarvy (no coding needed)
+
+Q3. What is Beautiful Soup? Why is it used?
+Ans. BeautifulSoup is a Python library used for parsing HTML and XML documents.
+It creates a parse tree from the page source code, allowing you to easily navigate and extract data from web pages.
+It works very well with libraries like requests, which handle downloading the page content.
+
+Reason	Description
+✅ HTML Parsing	Parses messy or poorly formatted HTML (like real-world websites)
+✅ Tag Navigation	Allows easy navigation using tags, classes, and attributes
+✅ Data Extraction	Helps extract specific text, links, images, etc. from web pages
+✅ Integration	Works smoothly with libraries like requests, lxml, and urllib
+✅ Lightweight & Easy	Easy to learn and implement for beginners
+from bs4 import BeautifulSoup
+import requests
+
+# Step 1: Send a request to the website
+url = "http://quotes.toscrape.com"
+response = requests.get(url)
+
+# Step 2: Parse the HTML
+soup = BeautifulSoup(response.text, 'html.parser')
+
+# Step 3: Extract all quotes
+quotes = soup.find_all('span', class_='text')
+
+# Step 4: Print them
+for quote in quotes:
+    print(quote.text)
+
+
+Q4. Why is flask used in this W Scraping project?
+Ans.- Flask is a micro web framework for Python, and it can be very useful in a web scraping project for several reasons. Flask allows you to easily create web applications and APIs that can interact with your web scraping scripts and present scraped data in a structured and user-friendly way.
+ Serve Scraped Data	Flask can be used to serve the scraped data to users in a web interface or API endpoint.
+✅ Create Interactive Interfaces	Flask allows you to build simple web interfaces, so users can interact with the scraper (e.g., input parameters for scraping).
+✅ Scheduled Scraping	You can integrate Flask with tools like Celery or APScheduler to schedule periodic scraping tasks.
+✅ Real-time Data Access	With Flask, you can show live updates of scraped data on a web page by calling scraping functions.
+✅ Return JSON or HTML	Flask can return scraped data in JSON for API responses or HTML for displaying on a webpage.
+✅ Build APIs for External Use	If you need others to interact with your scraping system, Flask allows you to expose your data through a REST API.
+from flask import Flask, render_template
+import requests
+from bs4 import BeautifulSoup
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    # Web scraping part: Fetch and scrape data
+    url = 'http://quotes.toscrape.com'
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text, 'html.parser')
+    quotes = [quote.text for quote in soup.find_all('span', class_='text')]
+    
+    # Return the scraped data on a web page
+    return render_template('home.html', quotes=quotes)
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+Q5. Write the names of AWS services used in this project. Also, explain the use of each service.
+Ans.For a web scraping project hosted on AWS (Amazon Web Services), the following AWS services are typically used. Here's an explanation of each service and its role:
+ EC2 (Elastic Compute Cloud)	Hosts the Python code or Flask application that performs web scraping tasks. EC2 provides a scalable and customizable virtual server to run your scraping scripts and web app.
+2. S3 (Simple Storage Service)	Stores the scraped data (e.g., CSV, JSON, or text files) for easy retrieval and access. S3 offers secure, scalable, and cost-effective storage.
+3. Lambda	Runs serverless scraping tasks in response to events (like API requests, scheduled events, etc.) without needing to manage servers. Useful for lightweight scraping or triggered jobs.
+4. CloudWatch	Monitors and logs scraping tasks. It helps you keep track of logs, errors, and performance metrics, which can help you troubleshoot and optimize your scraping scripts.
+5. API Gateway	Creates and manages APIs to expose the scraped data to users or other systems. API Gateway can provide a secure way to access your scraping data as an API.
+6. RDS (Relational Database Service)	Stores structured scraped data in a database like MySQL, PostgreSQL, etc. You can organize and query scraped information easily.
+7. IAM (Identity and Access Management)	Manages permissions and access controls to ensure that only authorized users or services can access the scraping data or EC2 instances.
+8. CloudFront	Distributes content (e.g., scraped data or static files) globally with low latency and fast access using a Content Delivery Network (CDN).
+9. SQS (Simple Queue Service)	Manages and queues scraping tasks or requests in distributed scraping systems. You can queue jobs to be processed later, helping with scalability and load balancing.
+10. Step Functions	Coordinates multiple AWS services (like Lambda, EC2, and SQS) to automate and orchestrate more complex scraping workflows.
+
+Explanation of Each Service:
+EC2 (Elastic Compute Cloud):
+
+EC2 instances act as the servers that run your web scraping scripts and Flask web applications.
+
+You can choose different instance types based on the scraping complexity (CPU, memory, storage).
+
+S3 (Simple Storage Service):
+
+S3 is an object storage service that is used to store large amounts of data.
+
+For example, after scraping product details or prices from an e-commerce site, you can save the data in a CSV file and store it in an S3 bucket.
+
+Lambda:
+
+AWS Lambda allows you to run Python scripts without the need to manage any infrastructure. You only pay for the time your code is running.
+
+It’s ideal for event-driven scraping, where scraping tasks can be triggered by API calls or scheduled jobs.
+
+CloudWatch:
+
+CloudWatch helps monitor logs and metrics from your scraping processes and web apps.
+
+You can create alarms to notify you of any issues, like scraping failures or server performance degradation.
+
+API Gateway:
+
+If you want to expose your scraped data via an API, you can use API Gateway.
+
+It can be configured to send scraped data to users or other applications that can consume it in a structured format (like JSON).
+
+RDS (Relational Database Service):
+
+RDS is a fully managed relational database that can store structured scraped data.
+
+You can store information in databases like MySQL or PostgreSQL and query it efficiently for further analysis.
+
+IAM (Identity and Access Management):
+
+IAM ensures that only authorized personnel or services can access your EC2 instances, S3 buckets, and other resources in the project.
+
+It allows you to define permissions and roles for different users or applications.
+
+CloudFront:
+
+If you're serving static content (like images or text files) along with scraped data, CloudFront can distribute that content globally with low latency.
+
+SQS (Simple Queue Service):
+
+SQS is a message queuing service that helps with distributed scraping tasks.
+
+If you're scraping many pages at once, you can use SQS to queue scraping jobs and process them asynchronously to handle large workloads efficiently.
+
+Step Functions:
+
+AWS Step Functions allow you to orchestrate multiple services in a workflow. You can combine EC2, Lambda, and SQS to manage complex scraping pipelines (e.g., queueing tasks, performing scraping on multiple websites, and storing results).
+
+🧠 Summary Table:
+
+AWS Service	Purpose/Use
+EC2	Hosts scraping scripts and web applications.
+S3	Stores scraped data (files, images, etc.).
+Lambda	Runs serverless scraping tasks on demand.
+CloudWatch	Monitors logs and metrics of scraping tasks and web apps.
+API Gateway	Creates APIs to expose scraped data for external use.
+RDS	Stores structured scraped data in a relational database.
+IAM	Manages access control for AWS resources.
+CloudFront	Distributes static content (scraped data) globally with low latency.
+SQS	Queues and manages asynchronous scraping tasks.
+Step Functions	Orchestrates multiple AWS services to automate scraping workflows.
