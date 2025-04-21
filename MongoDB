@@ -1,0 +1,277 @@
+Q1. What is MongoDB? Explain non-relational databases in short. In which scenarios it is preferred to use
+MongoDB over SQL databases?
+Ans MongoDB is a NoSQL, non-relational database that stores data in a flexible, JSON-like format called BSON (Binary JSON).
+Instead of tables and rows (like in SQL), MongoDB uses collections and documents.
+{
+  "_id": 1,
+  "name": "Alice",
+  "age": 25,
+  "skills": ["Python", "MongoDB"]
+}
+Non-relational (NoSQL) databases:
+
+Do not use tables and rows
+
+Store data in flexible formats like documents, key-value pairs, graphs, or wide-columns
+
+Are designed for scalability, speed, and flexibility
+
+Types of NoSQL databases:
+
+Document-based (e.g., MongoDB)
+
+Key-value (e.g., Redis)
+
+Column-family (e.g., Cassandra)
+
+Graph (e.g., Neo4j)
+
+📌 When to Use MongoDB Over SQL Databases:
+
+Scenario	Why MongoDB is Better
+🔄 Rapid development	Schema-less design allows quick changes in structure
+🧾 Unstructured or semi-structured data	Easily handles varied and nested data
+⚡ High write/read performance	Optimized for large-scale, fast operations
+📈 Horizontal scaling	Easy to scale across multiple servers
+📦 Big Data & Real-time apps	Ideal for IoT, analytics, social apps, etc.
+🧩 Dynamic schemas	Perfect when data structure isn't fixed
+❌ When Not Ideal:
+Complex multi-table joins
+
+Applications needing strict ACID transactions
+
+Fixed, relational data models (e.g., banking systems)
+
+Q2. State and Explain the features of MongoDB.
+Ans.MongoDB is a powerful, flexible NoSQL database. Here are some of its key features explained in simple terms:
+Document-Oriented Storage
+Stores data as documents in BSON (Binary JSON) format.
+
+More natural mapping to real-world objects (like JSON in JavaScript).
+
+2. Schema-Less / Flexible Schema
+Documents in the same collection don’t need to have the same structure.
+
+New fields can be added to documents without affecting others.
+
+🛠️ Great for agile development and rapidly evolving data models.
+
+3. Scalability (Horizontal Scaling)
+MongoDB supports sharding, which distributes data across multiple servers.
+
+Ideal for big data and systems that grow fast.
+
+🌐 Used by companies needing to scale globally.
+
+4. High Performance
+Optimized for high read and write throughput.
+
+Uses in-memory processing and efficient indexing.
+
+🚀 Suitable for real-time analytics and large-scale applications.
+
+5. Indexing
+You can index any field in a document to improve query speed.
+
+📌 Similar to indexes in SQL, but supports compound, text, and geospatial indexes.
+
+6. Aggregation Framework
+Powerful tool for performing data transformations, summaries, and analytics (similar to SQL’s GROUP BY, JOIN, etc.).
+
+🔄 Helps process large amounts of data in a pipeline.
+
+7. Replication (High Availability)
+Supports replica sets, which are groups of MongoDB servers that maintain the same data.
+
+If one server fails, another can automatically take over.
+
+🔁 Ensures data redundancy and uptime.
+
+8. Ad-Hoc Queries
+You can run flexible and dynamic queries using:
+
+Field values
+
+Range queries
+
+Regular expressions
+
+🔍 Supports fast data discovery and filtering.
+
+9. File Storage (GridFS)
+Stores and retrieves large files like images, videos, and PDFs.
+
+🗂️ Useful for apps dealing with multimedia or backups.
+
+10. Open Source and Cross-Platform
+Free to use and runs on all major OS platforms: Windows, Linux, macOS.
+
+🔓 Community and enterprise editions are available.
+
+Q3. Write a code to connect MongoDB to Python. Also, create a database and a collection in MongoDB.
+Ans. 
+pip install pymongo
+from pymongo import MongoClient
+
+# Connect to MongoDB (default host and port)
+client = MongoClient("mongodb://localhost:27017/")
+
+# Create (or access) a database
+mydb = client["SchoolDB"]
+
+# Create (or access) a collection (like a table in SQL)
+students_collection = mydb["Students"]
+
+# Insert a sample document
+student_data = {
+    "name": "Alice",
+    "age": 21,
+    "skills": ["Python", "MongoDB"]
+}
+
+students_collection.insert_one(student_data)
+
+print("Database and Collection created, and document inserted!")
+
+A database called SchoolDB is created.
+
+Inside it, a collection named Students.
+
+One document is inserted into the collection.
+
+Q4. Using the database and the collection created in question number 3, write a code to insert one record,
+and insert many records. Use the find() and find_one() methods to print the inserted record.
+Building on the SchoolDB and Students collection from Q3, here’s how to:
+
+Insert one record
+Insert many records
+Use find_one() and find() to display records
+
+from pymongo import MongoClient
+
+# Connect to MongoDB
+client = MongoClient("mongodb://localhost:27017/")
+db = client["SchoolDB"]
+students_collection = db["Students"]
+
+# ----------- INSERT ONE DOCUMENT -----------
+one_student = {
+    "name": "Bob",
+    "age": 22,
+    "skills": ["Java", "React"]
+}
+students_collection.insert_one(one_student)
+print("✅ One document inserted.")
+
+# ----------- INSERT MANY DOCUMENTS -----------
+many_students = [
+    {"name": "Charlie", "age": 23, "skills": ["C++", "SQL"]},
+    {"name": "Daisy", "age": 20, "skills": ["HTML", "CSS"]},
+    {"name": "Ethan", "age": 21, "skills": ["Python", "Django"]}
+]
+students_collection.insert_many(many_students)
+print("✅ Multiple documents inserted.")
+
+# ----------- FIND ONE DOCUMENT -----------
+print("\n📄 First document in the collection:")
+print(students_collection.find_one())
+
+# ----------- FIND ALL DOCUMENTS -----------
+print("\n📑 All documents in the collection:")
+for student in students_collection.find():
+    print(student)
+
+Q5. Explain how you can use the find() method to query the MongoDB database. Write a simple code to
+demonstrate this.
+Ans - The find() method in MongoDB is used to retrieve multiple documents (records) from a collection. You can use it with or without filters to control what data you get.
+collection.find(filter, projection)
+from pymongo import MongoClient
+
+# Connect to MongoDB
+client = MongoClient("mongodb://localhost:27017/")
+db = client["SchoolDB"]
+students = db["Students"]
+
+# ----------- Find all documents -----------
+print("📄 All Students:")
+for student in students.find():
+    print(student)
+
+# ----------- Find with condition (filter) -----------
+print("\n📄 Students aged 21 or above:")
+query = {"age": {"$gte": 21}}  # age >= 21
+for student in students.find(query):
+    print(student)
+
+# ----------- Find with projection (only name and age) -----------
+print("\n📄 Names and Ages of all Students:")
+for student in students.find({}, {"_id": 0, "name": 1, "age": 1}):
+    print(student)
+
+Q6. Explain the sort() method. Give an example to demonstrate sorting in MongoDB.
+The sort() method in MongoDB is used to sort the results of a query in ascending or descending order based on one or more fields.
+collection.find().sort("field_name", direction)
+
+from pymongo import MongoClient
+
+# Connect to MongoDB
+client = MongoClient("mongodb://localhost:27017/")
+db = client["SchoolDB"]
+students = db["Students"]
+
+# ----------- Sort by age in ascending order -----------
+print("📈 Students sorted by age (ascending):")
+for student in students.find().sort("age", 1):
+    print(student)
+
+# ----------- Sort by age in descending order -----------
+print("\n📉 Students sorted by age (descending):")
+for student in students.find().sort("age", -1):
+    print(student)
+
+# ----------- Sort by multiple fields: age ASC, name DESC -----------
+print("\n🔢 Students sorted by age then name:")
+for student in students.find().sort([("age", 1), ("name", -1)]):
+    print(student)
+
+ Use Cases:
+Sort products by price
+
+Sort users by last login time
+
+Sort blog posts by date (latest first)
+
+
+Q7. Explain why delete_one(), delete_many(), and drop() is used.
+Ans.These methods are used to remove data from a collection or database in MongoDB using Python (pymongo).
+
+ 1. delete_one()
+Deletes a single document that matches the given condition.
+If multiple documents match, only the first match will be deleted.
+
+students.delete_one({"name": "Alice"})
+
+🔻 2. delete_many()
+Deletes all documents that match the filter condition.
+students.delete_many({"age": 21})
+
+3. drop()
+Completely removes the entire collection (like a table in SQL).
+All documents and indexes inside it are permanently deleted.
+
+students.drop()
+
+
+delete_one()	You want to delete a specific single document
+delete_many()	You want to delete multiple documents that match a condition
+drop()	You want to delete the entire collection (not just the data)
+
+
+
+
+
+
+
+
+
+
