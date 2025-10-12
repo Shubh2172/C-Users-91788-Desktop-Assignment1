@@ -1,0 +1,64 @@
+Q1. Create a Pandas Series that contains the following data: 4, 8, 15, 16, 23, and 42. Then, print the series.
+Ans.) 
+import pandas as pd
+l = [4,8,15,16,23,42]
+s =pd.Series(l)
+print(type(s))
+print(s)
+
+Q2. Create a variable of list type containing 10 elements in it, and apply pandas.Series function on the
+variable print it.
+Ans.)
+import pandas as pd
+l=[1,2,3,4,5,6,'Shubh',44,'Rajput','Novi']
+s =pd.Series(l)
+print(type(s))
+print(s)
+
+Q3. Create a Pandas DataFrame that contains the following data:
+Ans.)
+import pandas as pd
+data = {'Name': ['Alice', 'Bob', 'Claire'],
+        'Age': [25, 30, 27],
+        'Gender': ['Female', 'Male', 'Female']}
+s = pd.DataFrame(data)
+print(type(s))
+print(s)
+
+Q4. What is ‘DataFrame’ in pandas and how is it different from pandas.series? Explain with an example.
+Ans. A DataFrame is a 2-dimensional labeled data structure in pandas. Think of it like an Excel spreadsheet or a SQL table—it has rows and columns, and each column can be of a different data type.
+Key Features:
+- Tabular format: rows × columns
+- Each column is a Series
+- Supports heterogeneous data types across columns
+Series - A Series is a 1-dimensional labeled array. It’s like a single column of data with an index.
+Key Features:
+- One-dimensional
+- Has an index
+- Can hold any data type (int, float, string, etc.
+
+Q5. What are some common functions you can use to manipulate data in a Pandas DataFrame? Can you give an example of when you might use one of these functions?
+Ans.) Pandas offers a rich set of functions to manipulate data in a DataFrame, making it a powerful tool for data analysis and preprocessing. Common functions include .head() and .tail() to preview rows, .info() and .describe() to understand data structure and summary statistics, .drop() to remove rows or columns, .fillna() and .dropna() to handle missing values, and .groupby() for aggregation based on categories. You can also use .sort_values() to sort data, .apply() to apply custom functions, and .merge() or .concat() to combine multiple DataFrames. For example, if you're analyzing sales data and want to calculate total revenue per region, you might use .groupby('Region')['Revenue'].sum() to aggregate the data efficiently. These functions help streamline data cleaning, transformation, and analysis workflows in real-world projects
+
+Q6. Which of the following is mutable in nature Series, DataFrame, Panel?
+ANs.) Series, DataFrame, and Panel—all are mutable in nature.
+ Explanation:
+- Series: Mutable. You can change values, indexes, and even data types.
+- DataFrame: Mutable. You can add/drop rows or columns, modify values, and change structure.
+- Panel: Also mutable, though it's deprecated in newer versions of pandas. It was used for 3D data and supported changes to its contents.
+
+Q7. Create a DataFrame using multiple Series. Explain with an example.
+ANs.) A Series is a one-dimensional labeled array. When you combine multiple Series—each representing a column—you can build a DataFrame, which is a two-dimensional table with rows and columns.
+ 
+import pandas as pd
+Name = pd.Series(['Shubham','Novi','Sagar'])
+Age = pd.Series([25,22,24])
+Role = pd.Series(['CSE','SPORTS','CE'])
+
+dict = pd.DataFrame({'Name' : Name,
+                     "Age" : Age,
+                     "Role" : Role})
+print(type(dict))
+print(dict)
+
+
