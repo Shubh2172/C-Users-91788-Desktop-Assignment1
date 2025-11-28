@@ -1,0 +1,88 @@
+Que 1: Name any five plots that we can plot using the Seaborn library. Also, state the uses of each plot.
+Ans. Scatter Plot (sns.scatterplot)
+- Use: Displays the relationship between two continuous variables.
+- Example: Plotting sepal length vs. sepal width in the Iris dataset helps identify clusters or correlations.
+- Insight: Useful for detecting trends, clusters, and outliers in data.
+
+ 2. Line Plot (sns.lineplot)
+- Use: Shows trends over time or ordered categories.
+- Example: Visualizing monthly sales data to see growth or decline.
+- Insight: Ideal for time-series analysis and understanding progression of values.
+
+ 3. Histogram / Distribution Plot (sns.histplot / sns.displot)
+- Use: Represents the distribution of a single variable.
+- Example: Plotting the distribution of customer ages in a dataset.
+- Insight: Helps identify skewness, spread, and whether data follows a normal distribution.
+
+ 4. Box Plot (sns.boxplot)
+- Use: Summarizes data distribution using quartiles and highlights outliers.
+- Example: Comparing salary distributions across different departments.
+- Insight: Great for spotting variability, median values, and extreme outliers.
+
+5. Heatmap (sns.heatmap)
+- Use: Visualizes data in a matrix form with color encoding.
+- Example: Correlation matrix of features in a dataset.
+- Insight: Useful for identifying relationships, patterns, and high/low values across categories.
+
+
+Que 2: Load the "fmri" dataset using the load_dataset function of seaborn. Plot a line plot using x =
+"timepoint" and y = "signal" for different events and regions.
+Note: timepoint, signal, event, and region are columns in the fmri dataset.
+Ans. fmri = sns.load_dataset('fmri')
+print(fmri.head())
+
+sns.lineplot(x = 'timepoint', y = 'signal', data = fmri)
+plt.show()
+
+sns.lineplot(x = 'timepoint', y = 'signal', data = fmri, style= 'region' )
+plt.show()
+
+sns.lineplot(x = 'timepoint', y = 'signal', data = fmri, style= 'region',hue = 'event' )
+plt.show()
+
+Que 3: Load the "titanic" dataset using the load_dataset function of seaborn. Plot two box plots using x =
+'pclass', y = 'age' and y = 'fare'.
+Note: pclass, age, and fare are columns in the titanic dataset.
+Ans. titanic = sns.load_dataset('titanic')
+print(titanic.head())
+
+fig , axes = plt.subplots(1,2, figsize=(12,6))
+sns.boxplot(data = titanic, x='pclass',y='age', ax=axes[0])
+axes[0].set_title('ABx')
+# plt.show()
+
+sns.boxplot(x='pclass',y='fare', data = titanic, ax= axes[1])
+axes[1].set_title('abcd')
+plt.show()
+
+Que 4: Use the "diamonds" dataset from seaborn to plot a histogram for the 'price' column. Use the hue
+parameter for the 'cut' column of the diamonds dataset.
+ANs.diamonds = sns.load_dataset('diamonds')
+print(diamonds.head())
+sns.histplot(data=diamonds, x= 'price')
+plt.show()
+
+ 
+sns.histplot(data=diamonds,x="price",     hue="cut") 
+plt.show() 
+
+Que 5: Use the "iris" dataset from seaborn to plot a pair plot. Use the hue parameter for the "species" column
+of the iris dataset.
+ANs.iris = sns.load_dataset("iris")
+
+print(iris.head())
+sns.pairplot(data = iris , hue='species')
+plt.show()
+
+Que 6: Use the "flights" dataset from seaborn to plot a heatmap.
+ANs. 
+flights = sns.load_dataset("flights")
+
+# Pivot the dataset properly
+flights_pivot = flights.pivot(index="month", columns="year", values="passengers")
+
+# Plot heatmap
+plt.figure(figsize=(12, 8))
+sns.heatmap(flights_pivot, annot=True, fmt="d", cmap="YlGnBu")
+plt.title("Monthly Passenger Numbers (Flights Dataset)")
+plt.show()
