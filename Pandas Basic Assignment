@@ -1,0 +1,52 @@
+Q1. Create a Pandas Series that contains the following data: 4, 8, 15, 16, 23, and 42. Then, print the series.
+
+import pandas as pd
+series1 = pd.Series([4, 8, 15, 16, 23, 42])
+print(series1)
+
+
+Q2. Create a variable of list type containing 10 elements in it, and apply pandas.Series function on the variable. Print it.
+
+my_list = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
+series2 = pd.Series(my_list)
+print(series2)
+
+
+Q3. Create a Pandas DataFrame that contains the following data:
+
+import pandas as pd
+data = {
+    "Name": ["Alice", "Bob", "Claire"],
+    "Age": [25, 30, 27],
+    "Gender": ["Female", "Male", "Female"]
+}
+df = pd.DataFrame(data)
+print(df)
+
+
+Q4. What is 'DataFrame' in pandas and how is it different from pandas.Series? Explain with an example.
+
+A DataFrame is a 2-dimensional labeled data structure in Pandas, similar to a table with rows and columns.  
+A Series is a 1-dimensional labeled array that can hold data of any type.  
+Example:
+series = pd.Series([1,2,3])
+dataframe = pd.DataFrame({"Numbers":[1,2,3], "Squares":[1,4,9]})
+
+
+Q5. What are some common functions you can use to manipulate data in a Pandas DataFrame? Can you give an example?
+
+Common functions: head(), tail(), describe(), info(), drop(), groupby(), sort_values(), fillna(), merge().  
+Example: df.describe() gives summary statistics of numerical columns.
+
+
+Q6. Which of the following is mutable in nature Series, DataFrame, Panel?
+
+Answer: All three (Series, DataFrame, Panel) are mutable in nature.
+
+
+Q7. Create a DataFrame using multiple Series. Explain with an example.
+
+s1 = pd.Series([1,2,3], name="Column1")
+s2 = pd.Series([4,5,6], name="Column2")
+df2 = pd.DataFrame({s1.name: s1, s2.name: s2})
+print(df2)
