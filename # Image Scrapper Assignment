@@ -1,0 +1,71 @@
+Q1. Write a python program to extract the video URL of the first five videos.
+
+import requests
+from bs4 import BeautifulSoup
+
+url = "https://www.youtube.com/@PW-Foundation/videos"
+response = requests.get(url)
+soup = BeautifulSoup(response.text, "html.parser")
+
+# Extract video links
+videos = soup.find_all("a", id="video-title", limit=5)
+video_urls = ["https://www.youtube.com" + v['href'] for v in videos]
+print(video_urls)
+
+
+Q2. Write a python program to extract the URL of the video thumbnails of the first five videos.
+
+thumbnails = soup.find_all("img", {"src": True}, limit=5)
+thumbnail_urls = [t['src'] for t in thumbnails]
+print(thumbnail_urls)
+
+
+Q3. Write a python program to extract the title of the first five videos.
+
+titles = [v['title'] for v in videos]
+print(titles)
+
+
+Q4. Write a python program to extract the number of views of the first five videos.
+
+views = soup.find_all("span", class_="inline-metadata-item", limit=5)
+view_counts = [v.text for v in views]
+print(view_counts)
+
+
+Q5. Write a python program to extract the time of posting of video for the first five videos.
+
+times = soup.find_all("span", class_="inline-metadata-item", limit=10)
+# Assuming alternate entries are views and posting times
+posting_times = [times[i].text for i in range(1, 10, 2)]
+print(posting_times)
+
+
+Q6. Save all the data scraped in the above questions in a CSV file.
+
+import pandas as pd
+
+data = {
+    "Video_URL": video_urls,
+    "Thumbnail_URL": thumbnail_urls,
+    "Title": titles,
+    "Views": view_counts,
+    "Posted": posting_times
+}
+
+df = pd.DataFrame(data)
+df.to_csv("scraped_videos.csv", index=False)
+print("Data saved to scraped_videos.csv")
+
+
+Q7. Create a simple UI with all functionalities mentioned above and deploy it in AWS.
+
+# Example using Streamlit
+import streamlit as st
+
+st.title("YouTube Video Scrapper")
+
+st.write("Scraped Data:")
+st.dataframe(df)
+
+# Deployment: Save this script as app.py and deploy on AWS using EC2 or Elastic Beanstalk.
