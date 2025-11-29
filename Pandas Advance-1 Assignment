@@ -1,0 +1,92 @@
+Q1. List any five functions of the pandas library with execution.
+
+import pandas as pd
+df = pd.DataFrame({"A":[1,2,3], "B":[4,5,6]})
+
+print(df.head())        # Shows first 5 rows
+print(df.tail())        # Shows last 5 rows
+print(df.describe())    # Summary statistics
+print(df.info())        # Info about DataFrame
+print(df.shape)         # Shape of DataFrame
+
+
+Q2. Re-index DataFrame with new index starting from 1 and incrementing by 2.
+
+def reindex_df(df):
+    new_index = range(1, 2*len(df)+1, 2)
+    df.index = new_index
+    return df
+
+
+Q3. Sum of first three values in 'Values' column.
+
+def sum_first_three(df):
+    total = df['Values'].iloc[:3].sum()
+    print("Sum of first three values:", total)
+
+
+Q4. Create new column 'Word_Count' with number of words in 'Text' column.
+
+def add_word_count(df):
+    df['Word_Count'] = df['Text'].apply(lambda x: len(str(x).split()))
+    return df
+
+
+Q5. Difference between DataFrame.size and DataFrame.shape.
+
+- DataFrame.size → Total number of elements (rows × columns).
+- DataFrame.shape → Tuple showing (rows, columns).
+
+
+Q6. Which function of pandas do we use to read an excel file?
+
+Answer: pd.read_excel()
+
+
+Q7. Extract username from 'Email' column.
+
+def extract_username(df):
+    df['Username'] = df['Email'].apply(lambda x: x.split('@')[0])
+    return df
+
+
+Q8. Select rows where A > 5 and B < 10.
+
+def filter_rows(df):
+    return df[(df['A'] > 5) & (df['B'] < 10)]
+
+
+Q9. Calculate mean, median, and standard deviation of 'Values' column.
+
+def stats_values(df):
+    mean = df['Values'].mean()
+    median = df['Values'].median()
+    std = df['Values'].std()
+    return mean, median, std
+
+
+Q10. Create 'MovingAverage' column with 7-day window.
+
+def moving_average(df):
+    df['MovingAverage'] = df['Sales'].rolling(window=7).mean()
+    return df
+
+
+Q11. Create 'Weekday' column from 'Date'.
+
+def add_weekday(df):
+    df['Date'] = pd.to_datetime(df['Date'])
+    df['Weekday'] = df['Date'].dt.day_name()
+    return df
+
+
+Q12. Select rows where 'Date' is between '2023-01-01' and '2023-01-31'.
+
+def filter_date_range(df):
+    df['Date'] = pd.to_datetime(df['Date'])
+    return df[(df['Date'] >= '2023-01-01') & (df['Date'] <= '2023-01-31')]
+
+
+Q13. To use pandas, what is the first library to import?
+
+Answer: import pandas as pd
