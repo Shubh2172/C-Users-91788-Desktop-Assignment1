@@ -1,0 +1,107 @@
+Consider the below code to answer further questions:
+import numpy as np
+list_ = [ ‘1’ , ’2’ , ‘3’ , ‘4’ , ‘5’ ]
+array_list = np.array(object = list_)
+Q1. Is there any difference in the data type of variables list_ and array_list? If there is then write a code
+to print the data types of both the variables.
+Ans.
+- list_ is a built‑in Python list object, which can hold elements of different data types.
+- array_list is a NumPy ndarray object, which is optimized for numerical computations and stores elements in a contiguous memory block. 
+Even though both contain similar values ('1', '2', '3', '4', '5'), their underlying data structures and behaviors are different
+
+import numpy as np
+
+list_ = ['1', '2', '3', '4', '5']
+array_list = np.array(object=list_)
+
+print("Data type of list_:", type(list_))
+print("Data type of array_list:", type(array_list))
+print("Array elements data type:", array_list.dtype)
+
+
+Q2. Write a code to print the data type of each and every element of both the variables list_ and
+arra_list.
+Ans. import numpy as np
+
+# Define list and array
+list_ = ['1', '2', '3', '4', '5']
+array_list = np.array(object=list_)
+
+# Print data type of each element in list_
+print("Data types of elements in list_:")
+for element in list_:
+    print(element, ":", type(element))
+
+# Print data type of each element in array_list
+print("\nData types of elements in array_list:")
+for element in array_list:
+    print(element, ":", type(element))
+Q3. Considering the following changes in the variable, array_list:
+array_list = np.array(object = list_, dtype = int)
+Will there be any difference in the data type of the elements present in both the variables, list_ and
+arra_list? If so then print the data types of each and every element present in both the variables, list_
+and arra_list.
+Consider the below code to answer further questions:
+import numpy as np
+num_list = [ [ 1 , 2 , 3 ] , [ 4 , 5 , 6 ] ]
+num_array = np.array(object = num_list)
+Ans.) - If you convert a Python list of strings like ['1','2','3','4','5'] into a NumPy array with dtype=int, NumPy will cast each string into an integer.
+- Difference:
+- list_ → elements remain Python strings (<class 'str'>).
+- array_list → elements become NumPy integers (<class 'numpy.int64'> or similar depending on your system).
+import numpy as np
+
+list_ = ['1', '2', '3', '4', '5']
+array_list = np.array(object=list_, dtype=int)
+
+print("Data types of elements in list_:")
+for element in list_:
+    print(element, ":", type(element))
+
+print("\nData types of elements in array_list:")
+for element in array_list:
+    print(element, ":", type(element))
+
+--------------------------------------------------
+
+import numpy as np
+
+num_list = [[1, 2, 3], [4, 5, 6]]
+num_array = np.array(object=num_list)
+
+Q4. Write a code to find the following characteristics of variable, num_array:
+(i) shape
+(ii) size
+ans. The shape of a NumPy array tells you the number of rows and columns (its dimensions). 
+The size gives the total number of elements present in the array. For example, if you have a 2×3 array, the shape will be (2, 3) and the size will be 6.
+ 
+import numpy as np
+
+# Define the nested list and convert to NumPy array
+num_list = [[1, 2, 3], [4, 5, 6]]
+num_array = np.array(object=num_list)
+
+# Print characteristics
+print("Shape of num_array:", num_array.shape)
+print("Size of num_array:", num_array.size)
+
+Q5. Write a code to create numpy array of 3*3 matrix containing zeros only, using a numpy array
+creation function.
+[Hint: The size of the array will be 9 and the shape will be (3,3).]
+Q6. Create an identity matrix of shape (5,5) using numpy functions?
+[Hint: An identity matrix is a matrix containing 1 diagonally and other elements will be 0.]
+Ans. import numpy as np
+
+# 3x3 matrix of zeros
+zeros_matrix = np.zeros((3, 3))
+
+print("3x3 Matrix of Zeros:")
+print(zeros_matrix)
+print("Shape:", zeros_matrix.shape)
+print("Size:", zeros_matrix.size)
+
+# 5x5 identity matrix
+identity_matrix = np.identity(5)
+
+print("\n5x5 Identity Matrix:")
+print(identity_matrix)
