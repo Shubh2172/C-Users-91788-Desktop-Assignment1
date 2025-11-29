@@ -1,0 +1,112 @@
+Scatter Plot (sns.scatterplot)
+- Use: Displays the relationship between two continuous variables.
+- Example: Plotting sepal length vs. sepal width in the Iris dataset helps identify clusters or correlations.
+- Insight: Useful for detecting trends, clusters, and outliers in data.
+
+📈 2. Line Plot (sns.lineplot)
+- Use: Shows trends over time or ordered categories.
+- Example: Visualizing monthly sales data to see growth or decline.
+- Insight: Ideal for time-series analysis and understanding progression of values.
+
+📉 3. Histogram / Distribution Plot (sns.histplot / sns.displot)
+- Use: Represents the distribution of a single variable.
+- Example: Plotting the distribution of customer ages in a dataset.
+- Insight: Helps identify skewness, spread, and whether data follows a normal distribution.
+
+🟦 4. Box Plot (sns.boxplot)
+- Use: Summarizes data distribution using quartiles and highlights outliers.
+- Example: Comparing salary distributions across different departments.
+- Insight: Great for spotting variability, median values, and extreme outliers.
+Q1. Load the "titanic" dataset using the load_dataset function of seaborn. Use Plotly express to plot a
+scatter plot for age and fare columns in the titanic dataset.
+import plotly.graph_objects as go
+import seaborn as sns
+titanic = sns.load_dataset('titanic')
+print(titanic.head())
+fig = go.Figure()
+fig.add_trace(go.Scatter(x=titanic.age,y=titanic.fare,mode='markers'))
+fig.show()
+
+Q2. Using the tips dataset in the Plotly library, plot a box plot using Plotly express.
+import plotly.graph_objects as go
+import seaborn as sns
+tips = sns.load_dataset("tips")
+fig = go.Figure()
+fig.add_trace(go.Box(
+    x=tips["day"],          # categorical variable
+    y=tips["total_bill"],   # numeric variable
+    name="Total Bill"
+))
+fig.show()
+
+
+Q3. Using the tips dataset in the Plotly library, Plot a histogram for x= "sex" and y="total_bill" column in the tips dataset. Also, use the "smoker" column with the pattern_shape parameter and the "day"
+column with the color parameter.
+import plotly.express as px
+
+# Load tips dataset
+df = px.data.tips()
+
+# Create histogram
+fig = px.histogram(
+    df,
+    x="sex",             # categorical variable
+    y="total_bill",      # numeric variable
+    color="day",         # color by day
+    pattern_shape="smoker",  # pattern by smoker status
+    barmode="group",     # group bars side by side
+    title="Histogram of Total Bill by Sex, Day, and Smoker Status"
+)
+
+fig.show()
+
+
+Q4. Using the iris dataset in the Plotly library, Plot a scatter matrix plot, using the "species" column for
+the color parameter.
+Note: Use "sepal_length", "sepal_width", "petal_length", "petal_width" columns only with the
+dimensions parameter.
+import plotly.graph_objects as go
+import seaborn as sns
+iris = sns.load_dataset("iris")
+fig = go.Figure
+
+
+import plotly.express as px
+
+df = px.data.iris()
+
+fig = px.scatter_matrix(
+    df,
+    dimensions=["sepal_length", "sepal_width", "petal_length", "petal_width"],
+    color="species",
+    title="Scatter Matrix of Iris Dataset"
+)
+
+fig.show()
+
+Q5. What is Distplot? Using Plotly express, plot a distplot.
+Ans. A distplot (short for distribution plot) is a visualization that shows the distribution of a dataset.
+- It combines a histogram (frequency of values) with a density curve (smooth estimate of the distribution).
+- In Seaborn, sns.distplot() was commonly used, but it is now deprecated.
+- In Plotly Express, we achieve the same effect using px.histogram with the marginal or histnorm parameters to show distribution and density.
+
+import plotly.express as px
+
+# Load dataset
+df = px.data.tips()
+
+# Create distplot (distribution of total_bill)
+fig = px.histogram(
+    df,
+    x="total_bill",          # numeric column
+    nbins=30,                # number of bins
+    marginal="box",          # add a box plot on the side
+    histnorm="density",      # normalize histogram to show density
+    title="Distribution Plot of Total Bill"
+)
+
+fig.show()
+
+
+
+
