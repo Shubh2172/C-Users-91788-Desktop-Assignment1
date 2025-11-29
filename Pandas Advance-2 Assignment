@@ -1,0 +1,35 @@
+import pandas as pd
+import numpy as np
+
+# Base DataFrame
+course_name = ['Data Science', 'Machine Learning', 'Big Data', 'Data Engineer']
+duration = [2, 3, 6, 4]
+df = pd.DataFrame(data={'course_name': course_name, 'duration': duration})
+
+Q1. Print the data present in the second row of df.
+print(df.loc[1])   # Using loc
+print(df.iloc[1])  # Using iloc
+
+Q2. Difference between loc and iloc:
+- loc → label-based indexing (uses row/column labels).
+- iloc → integer position-based indexing (uses row/column positions).
+
+Q3. Reindex the DataFrame.
+reindex = [3, 0, 1, 2]
+new_df = df.reindex(reindex)
+print(new_df.loc[2])   # Access by label
+print(new_df.iloc[2])  # Access by position
+# Difference: loc uses the label "2", iloc uses the 3rd row after reindexing.
+
+# Second DataFrame
+columns = ['column_1','column_2','column_3','column_4','column_5','column_6']
+indices = [1,2,3,4,5,6]
+df1 = pd.DataFrame(np.random.rand(6,6), columns=columns, index=indices)
+
+Q4. Statistical measurements:
+print(df1.mean())              # Mean of each column
+print(df1['column_2'].std())   # Standard deviation of column_2
+
+Q5. Replace second row of column_2 with string:
+df1.loc[2, 'column_2'] = "Hello"
+print(df
