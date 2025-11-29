@@ -1,0 +1,128 @@
+Q1: What is Matplotlib? Why is it used? Name five plots that can be plotted using the Pyplot module of Matplotlib.
+Ans.) Matplotlib is a powerful open‑source Python library used for data visualization. It helps transform raw numerical data into clear, interpretable charts and graphs, making analysis and communication easier.
+The pyplot module within Matplotlib provides a simple.
+Definition: Matplotlib is a versatile plotting library for Python, created by John D. Hunter in 2003.
+- Purpose: It allows developers and analysts to create static, interactive, and animated visualizations.
+- To visualize data patterns and trends.
+- To communicate insights effectively in reports and dashboards.
+- To support scientific computing, machine learning, and analytics workflows.
+- It integrates seamlessly with NumPy, Pandas, and Seaborn, making it a cornerstone of the Python data science stack.
+Pyplot Module of MAtplotlib
+Line Plot
+Bar Plot
+Scatter Plot
+Pie Plot
+Hist Plot
+
+Q2: What is a scatter plot? Use the following code to generate data for x and y. Using this generated data plot a scatter plot.
+import numpy as np
+np.random.seed(3)
+x = 3 + np.random.normal(0, 2, 50)
+y = 3 + np.random.normal(0, 2, len(x))
+Note: Also add title, xlabel, and ylabel to the plot.
+Ans.) Scatter Plot - A scatter plot is a type of data visualization that shows the relationship between two continuous variables by plotting points on a Cartesian plane. Each point represents an observation with its position determined by values of x and y.
+- Purpose:
+- Detect correlations or patterns between variables.
+- Identify clusters, trends, or outliers.
+- Compare how one variable changes with respect to another.
+import numpy as np
+import matplotlib.pyplot as plt
+
+np.random.seed(3)
+x = 3 + np.random.normal(0, 2, 50)
+y = 3 + np.random.normal(0, 2, len(x))
+# Note: Also add title, xlabel, and ylabel to the plot.
+plt.scatter(x,y,color ='purple',marker='o',alpha=0.7)
+plt.xlabel("Data of Xlabel")
+plt.ylabel("Data of Ylabel")
+plt.title("Scatter plot")
+plt.show()
+
+
+Q3: Why is the subplot() function used? Draw four line plots using the subplot() function.
+Use the following data:
+import numpy as np
+For line 1: x = np.array([0, 1, 2, 3, 4, 5]) and y = np.array([0, 100, 200, 300, 400, 500])
+For line 2: x = np.array([0, 1, 2, 3, 4, 5]) and y = np.array([50, 20, 40, 20, 60, 70])
+For line 3: x = np.array([0, 1, 2, 3, 4, 5]) and y = np.array([10, 20, 30, 40, 50, 60])
+For line 4: x = np.array([0, 1, 2, 3, 4, 5]) and y = np.array([200, 350, 250, 550, 450, 150])
+Ans.) - The subplot() function in Matplotlib is used to create multiple plots within a single figure.
+- It divides the figure into a grid of subplots (rows × columns) and allows you to select which subplot to draw on.
+- Purpose:
+- Compare multiple visualizations side by side.
+- Organize plots neatly in one figure.
+- Save space and make analysis more structured.
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+x = np.array([0, 1, 2, 3, 4, 5]) 
+y1 = np.array([0, 100, 200, 300, 400, 500])
+y2 = np.array([50, 20, 40, 20, 60, 70])
+y3 = np.array([10, 20, 30, 40, 50, 60])
+y4 = np.array([200, 350, 250, 550, 450, 150])
+
+plt.figure(figsize=(10,8))
+plt.subplot(2,2,1)
+plt.plot(x,y1,marker='o', color = 'Pink')
+plt.title("Plot 1")
+plt.subplot(2,2,2)
+plt.plot(x,y2, marker='o', color='Green')
+plt.title("Plot 2")
+plt.subplot(2,2,3)
+plt.plot(x,y3,marker='o', color = 'Red')
+plt.title('Plot 3')
+plt.subplot(2,2,4)
+plt.plot(x,y4,marker='o',color='Purple')
+plt.title('Plot 4')
+plt.show()
+
+
+Q4: What is a bar plot? Why is it used? Using the following data plot a bar plot and a horizontal bar plot.
+import numpy as np
+company = np.array(["Apple", "Microsoft", "Google", "AMD"])
+profit = np.array([3000, 8000, 1000, 10000])
+Ans. A bar plot (or bar chart) is a visualization that uses rectangular bars to represent categorical data.
+- The length/height of each bar corresponds to the value of the category.
+- Bars can be vertical or horizontal.
+ANs. import numpy as np
+import matplotlib.pyplot as plt
+company = np.array(["Apple", "Microsoft", "Google", "AMD"])
+profit = np.array([3000, 8000, 1000, 10000])
+plt.bar(company, profit)
+plt.xlabel('Profit')
+plt.ylabel('Company')
+plt.title('Profit Bar Chart')
+plt.show()
+
+plt.barh(company, profit)
+plt.xlabel('Profit')
+plt.ylabel('Company')
+plt.title('Profit Bar Chart')
+plt.show()
+
+Q5: What is a box plot? Why is it used? Using the following data plot a box plot.
+box1 = np.random.normal(100, 10, 200)
+box2 = np.random.normal(90, 20, 200)
+Ans. A box plot (also called a whisker plot) is a statistical visualization that shows the distribution of a dataset based on five summary statistics:
+- Minimum
+- First Quartile (Q1)
+- Median (Q2)
+- Third Quartile (Q3)
+- Maximum
+
+import numpy as np
+import matplotlib.pyplot as plt
+box1 = np.random.normal(100, 10, 200)
+box2 = np.random.normal(90, 20, 200)
+plt.boxplot(box1)
+plt.xlabel('X axis')
+plt.ylabel('Y axis')
+plt.title('Box Chart')
+plt.show()
+
+plt.boxplot(box2)
+plt.xlabel('X axis')
+plt.ylabel('Y axis')
+plt.title('Box Chart')
+plt.show()
