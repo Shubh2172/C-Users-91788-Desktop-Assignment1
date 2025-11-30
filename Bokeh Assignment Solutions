@@ -1,0 +1,118 @@
+Q1. How can you create a Bokeh plot using Python code?
+
+Answer:
+To create a Bokeh plot, you first import the necessary modules, prepare your data, and then use Bokeh’s plotting interface. Example:
+
+from bokeh.plotting import figure, show
+
+# Prepare data
+x = [1, 2, 3, 4, 5]
+y = [6, 7, 2, 4, 5]
+
+# Create figure
+p = figure(title="Simple Bokeh Plot", x_axis_label='X-Axis', y_axis_label='Y-Axis')
+
+# Add line glyph
+p.line(x, y, legend_label="Line Example", line_width=2)
+
+# Show plot
+show(p)
+
+
+Q2. What are glyphs in Bokeh, and how can you add them to a Bokeh plot? Explain with an example.
+
+Answer:
+Glyphs are the basic visual shapes used to represent data in Bokeh plots (e.g., circles, lines, squares). You add glyphs by calling methods like `circle()`, `line()`, or `square()` on a figure object.
+
+Example:
+
+from bokeh.plotting import figure, show
+
+x = [1, 2, 3, 4, 5]
+y = [6, 7, 2, 4, 5]
+
+p = figure(title="Glyph Example")
+p.circle(x, y, size=10, color="navy", alpha=0.5)
+
+show(p)
+
+
+Q3. How can you customize the appearance of a Bokeh plot, including the axes, title, and legend?
+
+Answer:
+You can customize appearance using attributes of the figure object:
+- Title: `p.title.text = "Custom Title"`
+- Axes: `p.xaxis.axis_label = "X Label"`, `p.yaxis.axis_label = "Y Label"`
+- Legend: `p.legend.title = "Legend Title"`, `p.legend.label_text_font_size = "12pt"`
+
+Example:
+
+p = figure(title="Customized Plot")
+p.line([1,2,3], [4,5,6], legend_label="Line Data", line_color="green")
+
+p.title.text = "My Customized Plot"
+p.xaxis.axis_label = "X Values"
+p.yaxis.axis_label = "Y Values"
+p.legend.title = "Legend"
+p.legend.label_text_font_size = "10pt"
+
+show(p)
+
+
+Q4. What is a Bokeh server, and how can you use it to create interactive plots that can be updated in real time?
+
+Answer:
+The Bokeh server allows you to build interactive web applications with plots that update in real time based on user input or streaming data. It synchronizes Python code with the browser.
+
+Steps:
+1. Import `curdoc` from `bokeh.io`.
+2. Define a plot and update function.
+3. Add periodic callbacks or widgets.
+4. Run with `bokeh serve --show script.py`.
+
+Example:
+
+from bokeh.plotting import figure
+from bokeh.io import curdoc
+from random import randint
+
+p = figure(title="Real-time Plot")
+r = p.line([0], [0])
+
+def update():
+    new_x = r.data_source.data['x'][-1] + 1
+    new_y = randint(0,10)
+    r.data_source.stream({'x':[new_x], 'y':[new_y]})
+
+curdoc().add_root(p)
+curdoc().add_periodic_callback(update, 1000)
+
+
+Q5. How can you embed a Bokeh plot into a web page or dashboard using Flask or Django?
+
+Answer:
+You can embed Bokeh plots into Flask/Django by generating script and div components using `bokeh.embed.components()` and rendering them in HTML templates.
+
+Example (Flask):
+
+from flask import Flask, render_template
+from bokeh.plotting import figure
+from bokeh.embed import components
+
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    p = figure(title="Embedded Plot")
+    p.line([1,2,3], [4,5,6])
+
+    script, div = components(p)
+    return render_template("index.html", script=script, div=div)
+
+if __name__ == "__main__":
+    app.run(debug=True)
+
+In Django, you follow a similar approach by passing `script` and `div` to the template context and embedding them in the HTML.
+
+--------------------------
+Note: Create your assignment in Jupyter Notebook, push it to GitHub, and share the repository link through your dashboard. Ensure the repository is public.
