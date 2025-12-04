@@ -1,0 +1,55 @@
+Q1. What are the three measures of central tendency?
+The three measures are Mean, Median, and Mode.
+
+Q2. Difference between Mean, Median, and Mode
+- Mean: The arithmetic average of all values. Sensitive to outliers.
+- Median: The middle value when data is ordered. Resistant to outliers.
+- Mode: The most frequently occurring value. Useful for categorical data.
+
+Q3. Measures of central tendency for given height data:
+Data: [178,177,176,177,178.2,178,175,179,180,175,178.9,176.2,177,172.5,178,176.5]
+- Mean ≈ 177.3
+- Median = 177
+- Mode = 177
+
+Q4. Standard deviation for given data:
+Data: [178,177,176,177,178.2,178,175,179,180,175,178.9,176.2,177,172.5,178,176.5]
+- Standard Deviation ≈ 1.9
+
+Q5. Measures of dispersion (Range, Variance, Standard Deviation)
+- Range: Difference between max and min values. Example: Heights 150–180 → Range = 30.
+- Variance: Average squared deviation from mean. Shows spread of data.
+- Standard Deviation: Square root of variance. Indicates average distance from mean.
+
+Q6. What is a Venn diagram?
+A Venn diagram is a visual representation of sets and their relationships using overlapping circles.
+
+Q7. For sets A = (2,3,4,5,6,7) & B = (0,2,6,8,10):
+(i) A ∩ B = {2,6}
+(ii) A ∪ B = {0,2,3,4,5,6,7,8,10}
+
+Q8. What is skewness in data?
+Skewness measures the asymmetry of a distribution. Positive skew = tail on right, Negative skew = tail on left.
+
+Q9. Position of median in right-skewed data
+In right-skewed data: Mean > Median.
+
+Q10. Difference between covariance and correlation
+- Covariance: Measures how two variables vary together. Units dependent.
+- Correlation: Standardized measure of relationship (-1 to +1). Unit-free.
+Used to analyze relationships between variables.
+
+Q11. Formula for sample mean
+Sample mean = (Σx) / n
+Example: Data [2,4,6] → Mean = (2+4+6)/3 = 4.
+
+Q12. Relationship between measures of central tendency in normal distribution
+In a perfectly normal distribution: Mean = Median = Mode.
+
+Q13. Covariance vs Correlation
+- Covariance: Indicates direction of relationship.
+- Correlation: Indicates both direction and strength of relationship.
+
+Q14. Effect of outliers on central tendency and dispersion
+Outliers can distort mean and increase variance/standard deviation.
+Example: Dataset [10,12,11,100] → Mean is inflated, SD is very large.
