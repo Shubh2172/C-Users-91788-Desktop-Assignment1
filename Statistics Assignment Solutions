@@ -1,0 +1,54 @@
+Q1. What is Statistics?
+Statistics is the science of collecting, organizing, analyzing, and interpreting data to make informed decisions. It helps summarize large amounts of information and draw meaningful conclusions.
+
+Q2. Types of Statistics
+- Descriptive Statistics: Summarizes and describes data using measures like mean, median, mode, variance, and graphs.
+  Example: Calculating the average marks of a class.
+- Inferential Statistics: Uses sample data to make predictions or generalizations about a population.
+  Example: Predicting election results based on a survey of voters.
+
+Q3. Types of Data
+- Qualitative (Categorical) Data: Non-numeric, describes categories.
+  Example: Colors of cars (red, blue, black).
+- Quantitative (Numerical) Data: Numeric, measurable values.
+  - Discrete: Countable values (e.g., number of students in a class).
+  - Continuous: Measurable values within a range (e.g., height, weight).
+
+Q4. Categorization of Datasets
+(i) Grading in exam (A+, A, B+, …) → Qualitative (Ordinal)
+(ii) Colour of mangoes (yellow, green, …) → Qualitative (Nominal)
+(iii) Height data of a class → Quantitative (Continuous)
+(iv) Number of mangoes exported → Quantitative (Discrete)
+
+Q5. Levels of Measurement
+- Nominal: Categories without order (e.g., blood type).
+- Ordinal: Ordered categories (e.g., exam grades).
+- Interval: Numeric scale without true zero (e.g., temperature in °C).
+- Ratio: Numeric scale with true zero (e.g., weight, income).
+
+Q6. Importance of Levels of Measurement
+Understanding levels ensures correct statistical methods are applied.
+Example: You can’t calculate a mean for nominal data like colors, but you can for ratio data like income.
+
+Q7. Nominal vs Ordinal Data
+- Nominal: Categories with no order (e.g., gender, nationality).
+- Ordinal: Categories with a meaningful order (e.g., rankings, grades).
+
+Q8. Plot for Range Display
+A Box Plot (Whisker Plot) is commonly used to display data in terms of range, showing minimum, maximum, median, and quartiles.
+
+Q9. Descriptive vs Inferential Statistics
+- Descriptive: Summarizes data (e.g., average age of employees).
+- Inferential: Makes predictions/generalizations (e.g., predicting employee satisfaction across the company from a sample survey).
+
+Q10. Measures of Central Tendency & Variability
+- Central Tendency:
+  - Mean → Average value.
+  - Median → Middle value.
+  - Mode → Most frequent value.
+- Variability:
+  - Range → Difference between max and min.
+  - Variance → Spread of data around mean.
+  - Standard Deviation → Average distance from mean.
+
+These measures describe both the "center" and "spread" of a dataset.
