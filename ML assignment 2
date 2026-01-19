@@ -1,0 +1,170 @@
+Q1: Define overfitting and underfitting in machine learning. What are the consequences of each, and how can they be mitigated?
+Ans.)Overfitting: Overfitting occurs when a machine learning model learns the training data too well, including noise and outliers. As a result,it performs very well on training data but poorly on unseen test data.
+Consequences: Poor generalization, high variance, and inaccurate predictions on new data.
+Mitigation:
+- Use simpler models with fewer parameters.
+- Apply regularization techniques (L1, L2).
+- Use cross-validation to monitor performance.
+- Increase training data size.
+- Apply dropout in neural networks.
+
+Underfitting: Underfitting occurs when a machine learning model is too simple and fails to capture the underlying patterns in the data. It performs poorly on both training and test data.
+Consequences: Low accuracy, high bias, and inability to make useful predictions.
+Mitigation:
+- Use more complex models with sufficient parameters.
+- Add more relevant features to the dataset.
+- Reduce regularization strength.
+- Train the model for longer or tune hyperparameters.
+
+Summary:
+- Overfitting = model too complex, memorizes data, poor generalization.
+- Underfitting = model too simple, misses patterns, poor accuracy.
+- Goal = balance bias and variance for optimal performance.
+
+Q2: How can we reduce overfitting? Explain in brief.
+Ans.)It occurs when a model learns the training data too well, including noise and outliers, which reduces its ability to generalize to new data. To reduce overfitting, the following techniques can be applied:
+
+1. Use simpler models with fewer parameters to avoid memorizing data.
+2. Apply regularization techniques (L1, L2) to penalize overly complex models.
+3. Increase the size of the training dataset to provide more variety.
+4. Use cross-validation to monitor performance on unseen data.
+5. Apply dropout in neural networks to prevent reliance on specific neurons.
+6. Perform feature selection to remove irrelevant or redundant features.
+7. Early stopping during training to prevent the model from over-learning.
+
+Summary:
+Reducing overfitting involves balancing model complexity, using regularization, and validating performance on unseen data.
+
+Q3: Explain underfitting. List scenarios where underfitting can occur in ML.
+Ans.) Underfitting occurs when a machine learning model is too simple to capture the underlying patterns in the data. The model fails to learn enough from the training data, resulting in poor performance on both
+training and test datasets. It usually happens when the model has high bias and cannot represent the complexity of the problem.
+
+Scenarios where underfitting can occur:
+1. Using a linear model (like Linear Regression) to fit data that has a non-linear relationship.
+2. Training a model with too few features, ignoring important variables that influence the outcome.
+3. Applying excessive regularization, which restricts the model from learning complex patterns.
+4. Using a shallow decision tree that cannot capture deeper splits in the data.
+5. Training for too few epochs in neural networks, leading to incomplete learning.
+6. When the dataset is very complex but the chosen algorithm is overly simplistic.
+
+Summary:
+Underfitting = model too simple, high bias, poor accuracy on both training and test data.
+
+Q4: Explain the bias-variance tradeoff in machine learning. What is the relationship between bias and variance, and how do they affect model performance?
+Ans.)Bias:
+- Bias refers to the error introduced when a model makes overly simplistic assumptions about the data.
+- High bias means the model cannot capture the underlying patterns, leading to underfitting.
+- Example: Using a linear model to fit data that has a complex non-linear relationship.
+
+Variance:
+- Variance refers to the error introduced when a model is too sensitive to small fluctuations in the training data.
+- High variance means the model memorizes training data but fails to generalize to new data, leading to overfitting.
+- Example: A deep decision tree that perfectly fits training data but performs poorly on test data.
+
+Bias-Variance Tradeoff:
+- Bias and variance are inversely related. Reducing bias often increases variance, and reducing variance often increases bias.
+- The tradeoff is about finding the right balance between bias and variance to minimize total error.
+- High bias = underfitting (poor accuracy on both training and test data).
+- High variance = overfitting (excellent accuracy on training data but poor generalization on test data).
+- Goal: Achieve a balance where the model captures important patterns without memorizing noise, ensuring good generalization.
+
+Impact on Model Performance:
+- Bias affects the model’s ability to learn from data.
+- Variance affects the model’s ability to generalize to unseen data.
+- Together, they determine the overall accuracy and reliability of the model.
+
+Q5: Discuss some common methods for detecting overfitting and underfitting in machine learning models.How can you determine whether your model is overfitting or underfitting?
+Ans.)Detecting Overfitting:
+- Overfitting occurs when the model performs very well on training data but poorly on test data.
+- Common methods to detect overfitting:
+  1. Compare training accuracy vs. test/validation accuracy. Large gap indicates overfitting.
+  2. Use cross-validation to check consistency across different data splits.
+  3. Monitor learning curves: high training accuracy with low validation accuracy shows overfitting.
+  4. Check model complexity: very complex models (deep trees, many parameters) are prone to overfitting.
+
+Detecting Underfitting:
+- Underfitting occurs when the model performs poorly on both training and test data.
+- Common methods to detect underfitting:
+  1. Low accuracy on both training and test sets.
+  2. Learning curves show both training and validation errors are high.
+  3. Model is too simple to capture data patterns (e.g., linear model for non-linear data).
+  4. High bias in predictions, meaning the model ignores important features.
+
+Determining Overfitting vs Underfitting:
+- If training accuracy is high but test accuracy is low → Overfitting.
+- If both training and test accuracy are low → Underfitting.
+- Goal is to achieve a balance where training and test accuracy are both reasonably high, indicating good generalization.
+
+Summary:
+- Overfitting = memorizes training data, poor generalization.
+- Underfitting = too simple, misses patterns, poor accuracy overall.
+- Detection relies on comparing performance across training and test sets, and analyzing learning curves.
+
+Q6: Compare and contrast bias and variance in machine learning. What are some examples of high bias and high variance models, and how do they differ in terms of their performance?
+Ans.)Bias:
+- Bias refers to the error introduced when a model makes overly simplistic assumptions about the data.
+- High bias models fail to capture the underlying patterns, leading to underfitting.
+- Example of high bias: Linear Regression applied to complex non-linear data.
+- Performance: Poor accuracy on both training and test sets because the model is too simple.
+
+Variance:
+- Variance refers to the error introduced when a model is too sensitive to fluctuations in the training data.
+- High variance models memorize training data but fail to generalize to unseen data, leading to overfitting.
+- Example of high variance: Deep Decision Trees or k-Nearest Neighbors with very low k.
+- Performance: Very high accuracy on training data but poor accuracy on test data.
+
+Comparison:
+- Bias = error due to overly simplistic assumptions (high bias → underfitting).
+- Variance = error due to excessive sensitivity to training data (high variance → overfitting).
+- Bias and variance are inversely related: reducing one often increases the other.
+- Goal is to balance bias and variance to minimize total error and achieve good generalization.
+
+Summary:
+- High bias models → simple, fast, but inaccurate (underfit).
+- High variance models → complex, accurate on training, but poor generalization (overfit).
+- Balanced models → capture patterns without memorizing noise, leading to strong performance on both training and test data.
+
+Q7: What is regularization in machine learning, and how can it be used to prevent overfitting? Describe some common regularization techniques and how they work.
+Ans.)Regularization:
+- Regularization is a technique used in machine learning to prevent overfitting by adding a penalty to the model’s complexity.
+- It discourages the model from fitting noise in the training data and helps improve generalization to unseen data.
+- The idea is to balance training accuracy with test accuracy by controlling model parameters.
+
+How it prevents overfitting:
+- Overfitting happens when a model learns training data too well, including noise.
+- Regularization adds a penalty term to the loss function, forcing the model to keep parameters small or sparse.
+- This reduces variance and improves performance on test data.
+
+Common Regularization Techniques:
+1. L1 Regularization (Lasso):
+- Adds the absolute value of coefficients as a penalty.
+- Encourages sparsity by shrinking some coefficients to zero.
+- Useful for feature selection.
+
+2. L2 Regularization (Ridge):
+- Adds the square of coefficients as a penalty.
+- Shrinks coefficients smoothly but rarely reduces them to zero.
+- Helps distribute weights evenly and improves stability.
+
+3. Elastic Net:
+- Combines L1 and L2 penalties.
+- Balances sparsity (L1) and stability (L2).
+- Useful when features are highly correlated.
+
+4. Dropout (Neural Networks):
+- Randomly drops neurons during training.
+- Prevents reliance on specific neurons and improves generalization.
+
+5. Early Stopping:
+- Stops training when validation error starts increasing.
+- Prevents the model from memorizing noise in training data.
+
+6. Data Augmentation:
+- Expands training data artificially (e.g., rotating images, adding noise).
+- Reduces overfitting by exposing the model to more diverse examples.
+
+Summary:
+- Regularization = penalty on complexity to prevent overfitting.
+- L1, L2, Elastic Net are common for regression/classification.
+- Dropout, Early Stopping, and Data Augmentation are widely used in deep learning.
+- The goal is to achieve better generalization by balancing bias and variance.
